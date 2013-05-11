@@ -2,7 +2,11 @@ from pyplasm import *
 import scipy
 from scipy import *
 from pyplasm import *
+#La macchina scelta è la bellissima Spider dell'Alfa-Romeo qui una copia totale,
+#le ruote i dettagli vanno zoomati,il modello comunque è stato scalato
+#il volante ho preferito di colorarlo di nero/marrone
 
+#This is the 2.5D model of the beautiful Alfa-Romeo Spider in scale.Enjoy =) !
 # exercise 1
 
 domain = INTERVALS(1)(40);
