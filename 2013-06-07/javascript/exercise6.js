@@ -57,7 +57,7 @@ function TreeRand(startx,end_x,starty,end_y){
 				if ((this.High_Quote[[w,m]]>3) && (this.High_Quote[[w,m]] != undefined)) {
 
 					var r = Math.random();
-					var t = creaAlbero(0.15,1.9,0.4);
+					var t = newTree(0.15,1.9,0.4);
 					 console.log(r);
 
 					t = T([0,1,2])([w,m,this.High_Quote[[w,m]]])(t);
@@ -70,26 +70,31 @@ function TreeRand(startx,end_x,starty,end_y){
 }
 
 
-function creaAlbero(r,h, l){
+function newTree(r,h, l){
 	var BZ= BEZIER(S0);
 	
-	var altezzaTronco = (h/2.2)+(Math.random()/5*2.1);
+	var highTr = (h/2.2)+(Math.random()/5*2.1);
 	var wood = DISK([r])();
-	var wood_exxtr = EXTRUDE([altezzaTronco])(wood);
+	function setTree(r){
+		return zTree=r/2;
+	}
+	var wood_exxtr = EXTRUDE([highTr])(wood);
 	var troncoAlberoColor = COLOR(Color_tree)(wood_exxtr);
-	var hights = h - altezzaTronco;
+	var hights = h - highTr+0.001;
+
 	var raggioCoronaFoglieMod = l + (Math.random()/5*2.1);
 	 console.log(l+h);
-	var bf = DISK([raggioCoronaFoglieMod])();
-	var bf_T = T([2])([altezzaTronco])(bf);
-	var points = [[-raggioCoronaFoglieMod,raggioCoronaFoglieMod,-hights],[0,0,0]];
-	var edge_Tree = BZ(points);
+	 //normal=htree*0.5
+			var bf = DISK([raggioCoronaFoglieMod])();
+			var bf_T = T([2])([highTr])(bf);
+			var points = [[-raggioCoronaFoglieMod,raggioCoronaFoglieMod,-hights],[0,0,0]];
+			var edge_Tree = BZ(points);
 
 
 	var cFoglie = ROTATIONAL_SURFACE(edge_Tree);
 	var superficieFoglie = MAP(cFoglie)(domain_tree_leafes);
 
-	var superficieFoglieTrasl = T([2])([hights-0.02+ altezzaTronco])(superficieFoglie);
+	var superficieFoglieTrasl = T([2])([hights-0.02+ highTr])(superficieFoglie);
 	var leaf_colored = COLOR(Color_leaf)(STRUCT([bf_T,superficieFoglieTrasl]));
 	
 
@@ -110,6 +115,9 @@ function Human_settlement(h, w, l){
 }
 
 function Matrix_Settlement(m,n){
+	function set(m){
+		return zSettlem=m/2;
+	}
   var offsetY = 0;
   var H_settlement = null;
   var offsetX = 0;

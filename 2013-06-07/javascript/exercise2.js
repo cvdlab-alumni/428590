@@ -42,3 +42,10 @@ var lake1=COLOR(Color_lake)(SIMPLEX_GRID([[-1,19],[-1,19],[1,2.9]]));
 var lake2=COLOR(Color_lake)(SIMPLEX_GRID([[-1,-9,3],[-1,17],[1,2.9]]));
 var lake3=COLOR(Color_lake)(SIMPLEX_GRID([[-1,-2,8,-2,3],[-1,-13,4],[1,2.9]]));
 var landscape=STRUCT([mountain,lake1,lake2,lake3])
+
+
+
+
+DRAW(landscape);
+
+

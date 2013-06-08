@@ -34,3 +34,8 @@ function map_mountain(v){
 }
 
 var mountain=COLOR(Color_mountain)(MAP(map_mountain)(domain3));
+
+
+
+
+
