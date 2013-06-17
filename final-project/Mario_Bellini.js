@@ -1,9 +1,9 @@
 // Vignoli W.g 428590
 
-var domain1 = INTERVALS(1)(30);
-var domain2 = DOMAIN([[0,1],[0,1]])([18,18]);
-var domain3 = DOMAIN([[0,1],[0,1],[0,1]])([12,12,3]);
-var domain_tree_leafes = DOMAIN([[0,1],[0,2*PI]])([18,18]);
+var domain1 = INTERVALS(1)(20);
+var domain2 = DOMAIN([[0,1],[0,1]])([30,30]);
+var domain3 = DOMAIN([[0,1],[0,1],[0,1]])([17,17,3]);
+var Domain_wheel = DOMAIN([[0,1],[0,2*PI]])([15,15]);
 
 var Color_whiteYY = [270/255,270/255,270/255];
 var Color_metalYY = [230/255,230/255,230/255,0.7];
@@ -83,7 +83,7 @@ function YingYangTable () {
       var curva_centro_volante = BEZIER(S0)(punti_rotazione_CV)
 
       var funz_rot_centro_volante = ROTATIONAL_SURFACE(curva_centro_volante)
-      var meta_centro_volante = MAP(funz_rot_centro_volante)(domain_tree_leafes)
+      var meta_centro_volante = MAP(funz_rot_centro_volante)(Domain_wheel)
       var meta_centro_volante2=T([2])([-0.3])(S([2])([-1])(meta_centro_volante))
       var ruota=COLOR(Color_ruota)(STRUCT([meta_centro_volante,meta_centro_volante2]))
 
@@ -128,6 +128,7 @@ function YingYangTable () {
       DRAW(YingYangTable);
 
 }
+
 
 //--------------------------BIB sofa
 
@@ -303,26 +304,18 @@ function CloudLamp(){
         };
 
 
-        atmosphere = function(){
-          var atmosphereDom = DOMAIN([[0,PI/2.0],[0,2*PI]])([72,172]);
-          var atmosphere = T([2])([0])(S([0,1,2])([11000,11000,11000])(MAP(SPHERE)(atmosphereDom)));
-          return COLOR([200/255, 240/255, 255/255,0.65])(atmosphere);
-        };
-
-        //DRAW(atmosphere())
-
         
 
-
+    
 
 
 
         function cloud(size,x,y,z) {
 
-        var atmosphereDom = DOMAIN([[0,PI*2.0],[0,2*PI]])([30,30]);
-        var atmosphere = S([0,1,2])([size+Math.random()*1.4,size+Math.random()*1.8,size+Math.random()*1.9])(MAP(SPHERE)(atmosphereDom));
+        var CloudDomain = DOMAIN([[0,PI*2.0],[0,2*PI]])([48,48]);
+        var LittleCloud = S([0,1,2])([size+Math.random()*1.4,size+Math.random()*1.8,size+Math.random()*1.9])(MAP(SPHERE)(CloudDomain));
 
-          return T([0,1,2])([x,y,z])(atmosphere);
+          return T([0,1,2])([x,y,z])(LittleCloud);
         }
 
         var cloud1= COLOR(Color_cloud)(STRUCT( [
@@ -458,7 +451,6 @@ function SudokuCupBoard()  {
    
 }
 
-
 function FloorLivingRoom(){
   var street_matrix= T([0,1,2])([-100,-250,-1.5])(SIMPLEX_GRID([[-1,500],[-1,500],[-1,0.5]]));
         var floor=COLOR(Color_Floor)(street_matrix);
@@ -468,5 +460,3 @@ function FloorLivingRoom(){
 
 var model= STRUCT([SudokuCupBoard(),CloudLamp(),YingYangTable(),Sofas(),FloorLivingRoom()])
 DRAW(model);
-
-
